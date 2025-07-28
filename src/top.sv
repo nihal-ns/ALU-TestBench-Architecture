@@ -93,7 +93,8 @@ module top;
 		// Pass the virtual interface correctly using the modports
 		tb = new(inter.DRIVER, inter.MONITOR, inter.REF);
 		tb.run();
-		$display("--------");
+		$display("--------------------------------------------------------");
+		$display("\n ------------Match %0d of %0d--------------- \n",tb.env.scb.MATCH,tb.env.scb.MATCH+tb.env.scb.MISMATCH);
 		$finish;
 	end
 endmodule

@@ -159,7 +159,6 @@
 `include "defines.sv"
 
 class reference;
-	//import std::*; // <-- ADD THIS LINE to fix mailbox error
 
 	transaction ref_trans;
 	virtual intf.REF vif;
@@ -176,10 +175,11 @@ class reference;
 	logic [`POW_2_N - 1:0] SH_AMT;
 
 	task start();
+		/* repeat(4)@(vif.ref_cb);   // added this part */ 
 		for(int i=0;i<`no_trans;i++) begin
 			ref_trans = new();
 			drv2ref.get(ref_trans);
-			repeat(2) @(vif.ref_cb) begin
+			repeat(1) @(vif.ref_cb) begin  //changed 1
 				if(vif.ref_cb.rst == 1) begin
 					ref_trans.RES = 'b0;
 					ref_trans.ERR = 'b0;
@@ -214,11 +214,11 @@ class reference;
 								begin
 									if(ref_trans.CMD == `INC_A) begin
 										ref_trans.RES = ref_trans.OPA + 1;
-										ref_trans.COUT = ref_trans.RES[`WIDTH];
+										/* ref_trans.COUT = ref_trans.RES[`WIDTH]; */  // flag is not present here
 									end
 									else if(ref_trans.CMD == `DEC_A) begin
 										ref_trans.RES = ref_trans.OPA - 1;
-										ref_trans.OFLOW = ref_trans.OPA == 0;
+										/* ref_trans.OFLOW = ref_trans.OPA == 0; */    // flag is not present here 
 									end
 									else
 										ref_trans.ERR = 1;
@@ -228,11 +228,11 @@ class reference;
 								begin
 									if(ref_trans.CMD == `INC_B) begin
 										ref_trans.RES = ref_trans.OPB + 1;
-										ref_trans.COUT = ref_trans.RES[`WIDTH];
+										/* ref_trans.COUT = ref_trans.RES[`WIDTH]; */          // flag is not present here 
 									end
 									else if(ref_trans.CMD == `DEC_B) begin
 										ref_trans.RES = ref_trans.OPB - 1;
-										ref_trans.OFLOW = ref_trans.OPB == 0;
+										/* ref_trans.OFLOW = ref_trans.OPB == 0; */             // flag is not present here 
 									end
 									else
 										ref_trans.ERR = 1;
@@ -272,7 +272,11 @@ class reference;
 												ref_trans.L = ref_trans.OPA < ref_trans.OPB;
 											end
 
-										`INC_MULT: ref_trans.RES = (ref_trans.OPA + 1) * (ref_trans.OPB + 1);
+										`INC_MULT: 
+											begin
+												repeat(1)@(vif.ref_cb);
+												ref_trans.RES = (ref_trans.OPA + 1) * (ref_trans.OPB + 1);
+											end
 
 										`SH_MULT: ref_trans.RES = (ref_trans.OPA << 1) * ref_trans.OPB;
 
@@ -338,10 +342,14 @@ class reference;
 						endcase
 					end // else
 				end // CE if
-
-			$display("\n %0t || REF output: res:%d | err:%d | oflow:%d | EGL:%d%d%d ",$time, ref_trans.RES,ref_trans.ERR, ref_trans.OFLOW, ref_trans.E, ref_trans.G, ref_trans.L);
+			
+			if(ref_trans.MODE)
+				$display("\n %0t || REF display Arithmetic \n ||| valid:%d | A:%d | B:%d | cmd:%d \n ||| output: | res:%d | err:%d | oflow:%d | EGL:%d%d%d ",$time,ref_trans.INP_VALID, ref_trans.OPA,  ref_trans.OPB, ref_trans.CMD, ref_trans.RES,ref_trans.ERR, ref_trans.OFLOW, ref_trans.E, ref_trans.G, ref_trans.L);
+			else
+				$display("\n %0t || REF display logical \n ||| valid:%d | A:%d | B:%d | cmd:%d \n ||| output: | res:%d | err:%d | oflow:%d | EGL:%d%d%d ",$time,ref_trans.INP_VALID, ref_trans.OPA,  ref_trans.OPB, ref_trans.CMD, ref_trans.RES,ref_trans.ERR, ref_trans.OFLOW, ref_trans.E, ref_trans.G, ref_trans.L);
 			end
 			ref2scb.put(ref_trans);
+			/* repeat(2)@(vif.ref_cb); */
 		end
 	endtask
 endclass
