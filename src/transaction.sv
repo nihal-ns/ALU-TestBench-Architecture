@@ -6,7 +6,7 @@ class transaction;
 	rand bit [`CMD_WIDTH:0] CMD;
 	rand bit [1:0] INP_VALID;
 	rand bit CIN, CE, MODE;
-
+	
 	bit OFLOW, COUT, E, G, L, ERR;
 	bit [`WIDTH:0] RES;
 
@@ -27,8 +27,7 @@ class transaction;
 																INP_VALID == 2'b01;
 															else if((CMD == 7) || (CMD == 10) || (CMD == 11))
 																INP_VALID == 2'b10;}}	
-
-	constraint val_eg {INP_VALID == 2'b11;}  // checking
+	
 	virtual function transaction copy();
 		copy = new();
 		copy.OPA = this.OPA;

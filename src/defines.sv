@@ -1,10 +1,14 @@
 `ifndef DEFINES_SV  // If DEFINES_SV is not defined...
 `define DEFINES_SV  // ...define it.
 
-`define no_trans 20
+
+`define no_trans 5
 `define WIDTH 8
 `define CMD_WIDTH 3
-
+// parameter POW_2_N = $clog2(WIDTH);                                                                                                                                    
+//   wire [POW_2_N - 1:0] SH_AMT = OPB[POW_2_N - 1:0];
+//parameter POW_2_N = $clog2(WIDTH);
+//parameter SH_AMT = OPB[($clog2(WIDTH))-1:0];
 `define POW_2_N $clog2(`WIDTH)
 //Arithematic Commands
 `define ADD				0
@@ -34,5 +38,6 @@
 `define SHL1_B		11
 `define ROL_A_B		12
 `define ROR_A_B		13
+
 
 `endif // DEFINES_SV
