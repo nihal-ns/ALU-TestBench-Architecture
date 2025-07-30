@@ -1,4 +1,3 @@
-
 `include "defines.sv"
 
 class monitor;
@@ -18,7 +17,22 @@ class monitor;
 			repeat(3) @(vif.mon_cb) // changed 2
 			if(vif.mon_cb.MODE && vif.mon_cb.CMD ==9) 
 				repeat(1)@(vif.mon_cb);
-			begin
+				
+			        /* if(((vif.mon_cb.MODE) && (vif.mon_cb.CMD < 4 || vif.mon_cb.CMD > 7) && (vif.mon_cb.CMD <11)) || ((!vif.mon_cb.MODE) && (vif.mon_cb.CMD < 6 || vif.mon_cb.CMD > 11 ) && (vif.mon_cb.CMD < 14)) && vif.mon_cb.INP_VALID != 2'b11) begin */  
+					/* for(int i =0;i<16;i++) begin */ 
+						/* @(vif.mon_cb); */
+						/* if(i==15) begin */
+							/* if(vif.mon_cb.INP_VALID == 2'b11) */
+								/* break; */
+						/* else */
+							/* if(vif.mon_cb.INP_VALID == 2'b11); */
+							/* break; */
+						/* end */
+					/* end */
+				/* end */
+
+
+			/* begin */
 				trans.RES = vif.mon_cb.RES;
 				trans.OFLOW = vif.mon_cb.OFLOW;
 				trans.COUT = vif.mon_cb.COUT;
@@ -30,12 +44,12 @@ class monitor;
 				trans.CMD = vif.mon_cb.CMD;
 				trans.OPA = vif.mon_cb.OPA;
 				trans.OPB = vif.mon_cb.OPB;
-			end
-			$display("\n-----------------------------|| MONITOR ||--------------------------------------");
+			/* end */
+			/* $display("-------------------------------------|| MONITOR ||----------------------------------------------"); */
 			if(trans.MODE)
-				$display("%0t || MONITOR Arithmetic: \n||| cmd:%0d | A:%0d | B:%0d ||| \nresult:%0d |overflow:%0b |cout:%0b |EGL:%0b%0b%0b |error:%b",$time,trans.CMD,trans.OPA,trans.OPB, trans.RES, trans.OFLOW, trans.COUT, trans.E, trans.G, trans.L, trans.ERR);
+				$display("\n%0t || MONITOR Arithmetic: \t|||cmd:%0d |A:%0d |B:%0d |valid:%0b \n\t\t\t\t|||result:%0d |overflow:%0b |cout:%0b |EGL:%0b%0b%0b |error:%b",$time,trans.CMD,trans.OPA,trans.OPB, trans.INP_VALID, trans.RES, trans.OFLOW, trans.COUT, trans.E, trans.G, trans.L, trans.ERR);
 			else
-				$display("%0t || MONITOR Logical \n||| cmd:%0d | A:%0b | B:%0b ||| \nresult:%0b |overflow:%0b |cout:%0b |EGL:%0b%0b%0b |error:%0b",$time,trans.CMD,trans.OPA,trans.OPB, trans.RES, trans.OFLOW, trans.COUT, trans.E, trans.G, trans.L, trans.ERR);
+				$display("\n%0t || MONITOR Logical:	|||cmd:%0d |A:%0b |B:%0b |valid:%0b \n\t\t\t\t|||result:%0b |overflow:%0b |cout:%0b |EGL:%0b%0b%0b |error:%0b",$time,trans.CMD,trans.OPA,trans.OPB, trans.INP_VALID, trans.RES, trans.OFLOW, trans.COUT, trans.E, trans.G, trans.L, trans.ERR);
 			mon2scb.put(trans);
 			//repeat(2)@(vif.mon_cb); 
 		end

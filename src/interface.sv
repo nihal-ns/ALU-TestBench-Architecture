@@ -1,4 +1,3 @@
-
 `include "defines.sv"
 
 interface intf(input bit clk, rst);

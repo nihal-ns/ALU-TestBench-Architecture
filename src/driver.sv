@@ -33,28 +33,62 @@ class driver;
 				end
 			else
 				/* repeat(1) @(vif.drv_cb) */
-				begin
-					repeat(1) @(vif.drv_cb);
-					vif.drv_cb.OPA <= trans.OPA;
-					vif.drv_cb.OPB <= trans.OPB;
-					vif.drv_cb.MODE <= trans.MODE;
-					vif.drv_cb.CMD <= trans.CMD;
-					vif.drv_cb.CIN <= trans.CIN;
-					vif.drv_cb.CE <= trans.CE;
-					vif.drv_cb.INP_VALID <= trans.INP_VALID;
-					repeat(1) @(vif.drv_cb);
-					$display("\n---------------------------------|| DRIVER ||------------------------------------\n");
-					if(trans.MODE)
-						$display("%0t || Driver: Arithmetic \n|||cmd:%0d |valid:%0b |OPA:%0d |OPB:%0d",$time, trans.CMD, trans.INP_VALID, trans.OPA, trans.OPB);
-					else
-						$display("%0t || Driver: Logical \n|||cmd:%0d |valid:%0b |OPA:%0d |OPB:%0d",$time, trans.CMD, trans.INP_VALID, trans.OPA, trans.OPB);
-					drv2ref.put(trans);
-					repeat(1)@(vif.drv_cb);  // this is extra
-					if(trans.MODE && trans.CMD==9)	begin
-						repeat(3)@(vif.drv_cb);  // this is extra
-						$display("Entered");
+			begin
+				repeat(1) @(vif.drv_cb);
+
+				if(((trans.MODE) && (trans.CMD < 4 || trans.CMD > 7) && (trans.CMD <11)) || ((!trans.MODE) && (trans.CMD < 6 || trans.CMD > 11 ) && (trans.CMD < 14)) && trans.INP_VALID != 2'b11) begin
+
+					if(trans.INP_VALID == 1 || trans.INP_VALID == 2) begin
+
+						if(trans.INP_VALID == 1)
+							trans.OPA.rand_mode(0);
+						else
+							trans.OPB.rand_mode(0); 
+
+						for(int i=0;i<16;i++) begin
+							repeat(1)@(vif.drv_cb);
+							$display("\n %0t |-----| Driver count: %0d |-----| \n",$time,i);
+							if(i==15) begin
+								trans.MODE.rand_mode(1);
+								trans.CMD.rand_mode(1);
+								if(trans.INP_VALID == 2'b11)
+									break;
+							end	
+							else begin 
+								trans.CMD.rand_mode(0);
+								trans.MODE.rand_mode(0);
+								trans.CIN.rand_mode(0); 
+								trans.CE.rand_mode(0); 
+								void'(trans.randomize);
+								if(trans.INP_VALID == 2'b11)
+									break;
+							end
+						end
 					end
 				end
+
+				/* else begin */ 
+				vif.drv_cb.OPA <= trans.OPA;
+				vif.drv_cb.OPB <= trans.OPB;
+				vif.drv_cb.MODE <= trans.MODE;
+				vif.drv_cb.CMD <= trans.CMD;
+				vif.drv_cb.CIN <= trans.CIN;
+				vif.drv_cb.CE <= trans.CE;
+				vif.drv_cb.INP_VALID <= trans.INP_VALID;
+				/* end // for if count; */
+				repeat(1) @(vif.drv_cb);
+				/* $display("\n-------------------------------------|| DRIVER ||----------------------------------------\n"); */
+				if(trans.MODE)
+					$display("%0t || Driver: Arithmetic \t|||cmd:%0d |valid:%0b |OPA:%0d |OPB:%0d",$time, trans.CMD, trans.INP_VALID, trans.OPA, trans.OPB);
+				else
+					$display("%0t || Driver: Logical    \t|||cmd:%0d |valid:%0b |OPA:%0b |OPB:%0b",$time, trans.CMD, trans.INP_VALID, trans.OPA, trans.OPB);
+				drv2ref.put(trans);
+				repeat(1)@(vif.drv_cb);  // this is extra
+				if(trans.MODE && trans.CMD==9)	begin
+					repeat(3)@(vif.drv_cb);  // this is extra
+				end
+				/* end // for loop count */	
+			end
 		end
 	endtask
 endclass

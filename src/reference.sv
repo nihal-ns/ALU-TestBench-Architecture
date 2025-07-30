@@ -1,5 +1,3 @@
-
-
 `include "defines.sv"
 
 class reference;
@@ -58,11 +56,11 @@ class reference;
 								begin
 									if(ref_trans.CMD == `INC_A) begin
 										ref_trans.RES = ref_trans.OPA + 1;
-										/* ref_trans.COUT = ref_trans.RES[`WIDTH]; */  // flag is not present here
+										/* ref_trans.COUT = ref_trans.RES[`WIDTH]; */  
 									end
 									else if(ref_trans.CMD == `DEC_A) begin
 										ref_trans.RES = ref_trans.OPA - 1;
-										/* ref_trans.OFLOW = ref_trans.OPA == 0; */    // flag is not present here 
+										/* ref_trans.OFLOW = ref_trans.OPA == 0; */    
 									end
 									else
 										ref_trans.ERR = 1;
@@ -72,11 +70,11 @@ class reference;
 								begin
 									if(ref_trans.CMD == `INC_B) begin
 										ref_trans.RES = ref_trans.OPB + 1;
-										/* ref_trans.COUT = ref_trans.RES[`WIDTH]; */          // flag is not present here 
+										/* ref_trans.COUT = ref_trans.RES[`WIDTH]; */   
 									end
 									else if(ref_trans.CMD == `DEC_B) begin
 										ref_trans.RES = ref_trans.OPB - 1;
-										/* ref_trans.OFLOW = ref_trans.OPB == 0; */             // flag is not present here 
+										/* ref_trans.OFLOW = ref_trans.OPB == 0; */    
 									end
 									else
 										ref_trans.ERR = 1;
@@ -188,9 +186,9 @@ class reference;
 				end // CE if
 			
 			if(ref_trans.MODE)
-				$display("\n %0t || REF display Arithmetic \n ||| valid:%d | A:%d | B:%d | cmd:%d \n ||| output: | res:%d | err:%d | oflow:%d | EGL:%d%d%d ",$time,ref_trans.INP_VALID, ref_trans.OPA,  ref_trans.OPB, ref_trans.CMD, ref_trans.RES,ref_trans.ERR, ref_trans.OFLOW, ref_trans.E, ref_trans.G, ref_trans.L);
+				$display("\n%0t || REF display Arithmetic \n\t\t\t\t|||valid:%d |cmd:%d |A:%d |B:%d  \n\t\t\t\t|||res:%0d |err:%b |oflow:%b |EGL:%b%b%b ",$time,ref_trans.INP_VALID, ref_trans.CMD, ref_trans.OPA,  ref_trans.OPB, ref_trans.RES,ref_trans.ERR, ref_trans.OFLOW, ref_trans.E, ref_trans.G, ref_trans.L);
 			else
-				$display("\n %0t || REF display logical \n ||| valid:%d | A:%d | B:%d | cmd:%d \n ||| output: | res:%d | err:%d | oflow:%d | EGL:%d%d%d ",$time,ref_trans.INP_VALID, ref_trans.OPA,  ref_trans.OPB, ref_trans.CMD, ref_trans.RES,ref_trans.ERR, ref_trans.OFLOW, ref_trans.E, ref_trans.G, ref_trans.L);
+				$display("\n%0t || REF display logical \n\t\t\t\t|||valid:%0d |cmd:%0d |A:%0b |B:%0b  \n\t\t\t\t|||res:%0b |err:%0b |oflow:%0b |EGL:%b%b%b ",$time,ref_trans.INP_VALID, ref_trans.CMD, ref_trans.OPA,  ref_trans.OPB, ref_trans.RES,ref_trans.ERR, ref_trans.OFLOW, ref_trans.E, ref_trans.G, ref_trans.L);
 			end
 			ref2scb.put(ref_trans);
 			/* repeat(2)@(vif.ref_cb); */

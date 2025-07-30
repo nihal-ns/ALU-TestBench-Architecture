@@ -2,6 +2,7 @@
 
 class scoreboard;
 	int MATCH, MISMATCH;
+	int t;
 	transaction trans, trans_ref;
 
 	mailbox #(transaction) mon2scb;
@@ -35,14 +36,16 @@ class scoreboard;
 		if(trans.RES == trans_ref.RES && trans.OFLOW == trans_ref.OFLOW && trans.COUT == trans_ref.COUT && trans.G == trans_ref.G && trans.L == trans_ref.L && trans.E == trans_ref.E && trans.ERR == trans_ref.ERR)
 	/* if(trans === trans_ref) */		
 			begin
+				t++;
 				MATCH++;
-				$display("%0t | CORRECT EXECUTION, OUTPUT MATCHES\n EXPECTED\tRECIEVED\nRES: %0d\t%0d\nOFLOW: %1b\t%1b\nCOUT: %1b\t%1b\nE: %1b\t%1b\nG: %1b\t%1b\nL: %1b\t%1b \nERR:%1b\t%1b\n",$time,trans.RES,trans_ref.RES,trans.OFLOW,trans_ref.OFLOW,trans.COUT,trans_ref.COUT,trans.E,trans_ref.E,trans.G,trans_ref.G,trans.L,trans_ref.L,trans.ERR,trans_ref.ERR);
+				$display("\n%0t ||CORRECT EXECUTION, OUTPUT MATCHES\n \tEXPECTED\tRECIEVED\nRES:   %0d\t\t%0d\nOFLOW: %1b\t\t%1b\nCOUT:  %1b\t\t%1b\nE:     %1b\t\t%1b\nG:     %1b\t\t%1b\nL:     %1b\t\t%1b \nERR:   %1b\t\t%1b\n",$time,trans.RES,trans_ref.RES,trans.OFLOW,trans_ref.OFLOW,trans.COUT,trans_ref.COUT,trans.E,trans_ref.E,trans.G,trans_ref.G,trans.L,trans_ref.L,trans.ERR,trans_ref.ERR);
 			end
 		else 
 			begin
+				t++;
 				MISMATCH++;
-				$display("inputs:CMD:%d|%d ||M:%d|%d  || A:%d|%d || B:%d|%d ",trans.CMD,trans_ref.CMD,trans.MODE,trans_ref.MODE,trans.OPA,trans_ref.OPA,trans.OPB,trans_ref.OPB);
-				$display("%0t | INCORRECT EXECUTION\nCMP:\n EXPECTED\tRECIEVED\nRES: %0d\t%0d\nOFLOW: %1b\t%1b\nCOUT: %1b\t%1b\nE: %1b\t%1b\nG: %1b\t%1b\nL: %1b\t%1b ERR:%1b\t%1b\n",$time,trans.RES,trans_ref.RES,trans.OFLOW,trans_ref.OFLOW,trans.COUT,trans_ref.COUT,trans.E,trans_ref.E,trans.G,trans_ref.G,trans.L,trans_ref.L,trans.ERR,trans_ref.ERR);
+				$display("\n Inputs(DUT|REF): \tCMD:%d|%0d |M:%d|%0d ||A:%0d|%0d ||B:%0d|%0d ",trans.CMD,trans_ref.CMD,trans.MODE, trans_ref.MODE, trans.OPA,trans_ref.OPA,trans.OPB,trans_ref.OPB);
+				$display("\n%0t || INCORRECT EXECUTION\nCMP:\n \tEXPECTED\tRECIEVED\nRES:   %0d\t\t%0d\nOFLOW: %1b\t\t%1b\nCOUT:  %1b\t\t%1b\nE:     %1b\t\t%1b\nG:     %1b\t\t%1b\nL:     %1b\t\t%1b \nERR:   %1b\t\t%1b\n",$time,trans.RES,trans_ref.RES,trans.OFLOW,trans_ref.OFLOW,trans.COUT,trans_ref.COUT,trans.E,trans_ref.E,trans.G,trans_ref.G,trans.L,trans_ref.L,trans.ERR,trans_ref.ERR);
         /* $display(" ||||| Failed\n CMD = %0d", trans_ref.CMD); */
         /* if(!(trans.RES === trans_ref.RES)) */
         /*   $display(" Result error : reference : %0d | monitor : %0d", trans_ref.RES, trans.RES); */
@@ -59,6 +62,8 @@ class scoreboard;
         /* if(!(trans.COUT === trans_ref.COUT)) */
         /*   $display(" COUT error : reference : %0d | monitor : %0d", trans_ref.COUT, trans.COUT); */
 			end
-    $display("---------------------------------------------------------------------------------------------------------------------------------------------------");
+    $display("--------------------------------------------------------------------------%0d------------------------------------------------------------------------",t);
 	endtask	
 endclass	
+
+
