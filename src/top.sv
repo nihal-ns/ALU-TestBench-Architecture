@@ -41,9 +41,9 @@ module top;
 	/* test tb; */
 	/* flag tb; */
 	/* error_flag tb; */	
-	one_op tb;
+	/* one_op tb; */
 	/* delay tb; */
-	/* regress_test tb; */
+	regress_test tb;
 
 	initial begin
 		tb = new(inter.DRIVER, inter.MONITOR, inter.REF);
