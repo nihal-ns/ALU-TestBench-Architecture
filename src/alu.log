@@ -1,10 +1,10 @@
 QuestaSim vlog 10.6c Compiler 2017.07 Jul 25 2017
-Start time: 19:13:12 on Jul 30,2025
+Start time: 19:39:44 on Jul 30,2025
 vlog -sv "+acc" "+cover" "+fcover" -l alu.log top.sv 
 -- Compiling module ALU_DESIGN
 -- Compiling interface intf
 -- Compiling module cover_assert
 -- Compiling module top
 ** Error: top.sv(6): (vlog-13006) Could not find the package (alu_pkg).  Design read will continue, but expect a cascade of errors after this failure.  Furthermore if you experience a vopt-7 error immediately before this error then please check the package names or the library search paths on the command line.
-End time: 19:13:13 on Jul 30,2025, Elapsed time: 0:00:01
+End time: 19:39:44 on Jul 30,2025, Elapsed time: 0:00:00
 Errors: 1, Warnings: 0

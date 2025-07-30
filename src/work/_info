@@ -8,143 +8,79 @@ z2
 !i10f 100
 cModel Technology
 Z0 d/home/nihalnarayana/testbench/ALU-TestBench-Architecture/src
-T_opt
-!s110 1753883130
-V>E>RiCIEEQc@<876?V<l23
-04 3 4 work top fast 0
-=1-6805caf5892c-688a21fa-88bed-27815
-o-quiet -auto_acc_if_foreign -work work +acc=npr
-Z1 tCvgOpt 0
-n@_opt
-OE;O;10.6c;65
 vALU_DESIGN
-Z2 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z3 !s110 1753883109
+Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z2 !s110 1753884584
 !i10b 1
 !s100 a@a47TP5<7n]FRFCX9D=93
-IUNb1c8ReX>P40GLzT3CPS2
-Z4 VDg1SIo80bB@j0V0VzS_@n1
-Z5 !s105 top_sv_unit
+IVPY=25WNOO^5aW`n6OmSj1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 !s105 top_sv_unit
 S1
 R0
-Z6 w1753867747
+Z5 w1753867747
 8ALU_Design_16clock_cycles.sv
 FALU_Design_16clock_cycles.sv
 L0 1
-Z7 OE;L;10.6c;65
+Z6 OE;L;10.6c;65
 r1
 !s85 0
 31
-Z8 !s108 1753883109.000000
-Z9 !s107 cover_assert.sv|interface.sv|ALU_Design_16clock_cycles.sv|test.sv|environment.sv|scoreboard.sv|reference.sv|monitor.sv|driver.sv|generator.sv|defines.sv|transaction.sv|top.sv|alu_pkg.sv|
-Z10 !s90 alu_pkg.sv|top.sv|
+Z7 !s108 1753884584.000000
+!s107 cover_assert.sv|defines.sv|interface.sv|ALU_Design_16clock_cycles.sv|top.sv|
+Z8 !s90 -sv|+acc|+cover|+fcover|-l|alu.log|top.sv|
 !i113 0
-Z11 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-R1
+Z9 !s102 +cover
+Z10 o-sv +acc +cover +fcover -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z11 tCvgOpt 0
 n@a@l@u_@d@e@s@i@g@n
-Xalu_pkg
-!s115 intf
-R2
-R3
-!i10b 1
-!s100 <bObUc0o^^J>DYme_=Zic2
-IK=1^KLM8ImEB92KCg6ZSJ2
-VK=1^KLM8ImEB92KCg6ZSJ2
-S1
-R0
-w1753874958
-8alu_pkg.sv
-Falu_pkg.sv
-Ftransaction.sv
-Fdefines.sv
-Fgenerator.sv
-Fdriver.sv
-Fmonitor.sv
-Freference.sv
-Fscoreboard.sv
-Fenvironment.sv
-Ftest.sv
-L0 1
-R7
-r1
-!s85 0
-31
-R8
-R9
-R10
-!i113 0
-R11
-R1
 vcover_assert
+R1
 R2
-Z12 !s110 1753883110
 !i10b 1
 !s100 og?H^eh<Y@2ZS2DlzeQ^c1
-I?5gTQ^5Ak[DT6[]`P=f5M3
+IbM>3]e7`A7YZdF]ScMPFF1
+R3
 R4
-R5
 S1
 R0
 w1753872139
 8cover_assert.sv
 Fcover_assert.sv
 L0 3
-R7
+R6
 r1
 !s85 0
 31
+R7
+Z12 !s107 cover_assert.sv|defines.sv|interface.sv|ALU_Design_16clock_cycles.sv|top.sv|
 R8
+!i113 0
 R9
 R10
-!i113 0
 R11
-R1
 Yintf
+R1
 R2
-R3
 !i10b 1
 !s100 PJSI4>blF16X@iFV^Ma2O3
-I0zSLS7REV:6[J>9I=@N[H0
+IY6DaMkGSi>4n6O@;;gZI01
+R3
 R4
-R5
 S1
 R0
-R6
+R5
 8interface.sv
 Finterface.sv
 L0 3
-R7
+R6
 r1
 !s85 0
 31
-R8
-R9
-R10
-!i113 0
-R11
-R1
-vtop
-R2
-DXx4 work 7 alu_pkg 0 22 K=1^KLM8ImEB92KCg6ZSJ2
+R7
 R12
-!i10b 1
-!s100 5_o2QbMb6lQ:0nfnBRn[k2
-I:e>Xjaj^D@BIBQ@6ED0NL0
-R4
-R5
-S1
-R0
-w1753871966
-8top.sv
-Ftop.sv
-L0 5
-R7
-r1
-!s85 0
-31
 R8
+!i113 0
 R9
 R10
-!i113 0
 R11
-R1
