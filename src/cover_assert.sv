@@ -6,7 +6,7 @@ module cover_assert(clk,rst,CE,MODE,CMD,INP_VALID,OPA,OPB,CIN,RES,ERR,COUT,OFLOW
 	input [`WIDTH-1:0] OPA, OPB;
 	input [1:0] INP_VALID;
 	input [`CMD_WIDTH:0] CMD;
-	input [`WIDTH] RES;
+	input [`WIDTH:0] RES;
 	
 	input ERR;
 	input COUT;

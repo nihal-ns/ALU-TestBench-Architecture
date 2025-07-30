@@ -11,7 +11,7 @@ class transaction;
 	bit [`WIDTH:0] RES;
 
 
-	constraint CE_enable {CE == 1;}  
+	/* constraint CE_enable {CE == 1;} */  
 	constraint cmd_operation {if(MODE) 
 															CMD inside {[0:10]};
 														else 
@@ -162,6 +162,8 @@ endclass
 
 
 class one_operand extends transaction;
+ 
+	constraint CE_enable {CE dist {0:=2,1:=8};}  
 
   constraint cmd_operation {                                                                                                                                    
     if(MODE)                                                                                                                                                    
