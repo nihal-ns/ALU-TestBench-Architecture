@@ -17,9 +17,10 @@ o-quiet -auto_acc_if_foreign -work work +acc=npr
 Z1 tCvgOpt 0
 n@_opt
 OE;O;10.6c;65
+R0
 vALU_DESIGN
 Z2 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z3 !s110 1753885762
+Z3 !s110 1753886156
 !i10b 1
 !s100 a@a47TP5<7n]FRFCX9D=93
 IVPY=25WNOO^5aW`n6OmSj1
@@ -35,12 +36,12 @@ Z7 OE;L;10.6c;65
 r1
 !s85 0
 31
-Z8 !s108 1753885762.000000
-Z9 !s107 cover_assert.sv|interface.sv|ALU_Design_16clock_cycles.sv|test.sv|environment.sv|scoreboard.sv|reference.sv|monitor.sv|driver.sv|generator.sv|defines.sv|transaction.sv|top.sv|alu_pkg.sv|
-Z10 !s90 -sv|+acc|+cover|+fcover|-l|alu.log|alu_pkg.sv|top.sv|
+Z8 !s108 1753886156.000000
+!s107 cover_assert.sv|interface.sv|ALU_Design_16clock_cycles.sv|test.sv|environment.sv|scoreboard.sv|reference.sv|monitor.sv|driver.sv|generator.sv|defines.sv|transaction.sv|top.sv|alu_pkg.sv|
+Z9 !s90 -sv|+acc|+cover|+fcover|-l|alu.log|alu_pkg.sv|top.sv|
 !i113 0
-Z11 !s102 +cover
-Z12 o-sv +acc +cover +fcover -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z10 !s102 +cover
+Z11 o-sv +acc +cover +fcover -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R1
 n@a@l@u_@d@e@s@i@g@n
 Xalu_pkg
@@ -71,11 +72,11 @@ r1
 !s85 0
 31
 R8
+Z12 !s107 cover_assert.sv|interface.sv|ALU_Design_16clock_cycles.sv|test.sv|environment.sv|scoreboard.sv|reference.sv|monitor.sv|driver.sv|generator.sv|defines.sv|transaction.sv|top.sv|alu_pkg.sv|
 R9
-R10
 !i113 0
+R10
 R11
-R12
 R1
 vcover_assert
 R2
@@ -96,11 +97,11 @@ r1
 !s85 0
 31
 R8
-R9
-R10
-!i113 0
-R11
 R12
+R9
+!i113 0
+R10
+R11
 R1
 Yintf
 R2
@@ -121,11 +122,11 @@ r1
 !s85 0
 31
 R8
-R9
-R10
-!i113 0
-R11
 R12
+R9
+!i113 0
+R10
+R11
 R1
 vtop
 R2
@@ -147,9 +148,9 @@ r1
 !s85 0
 31
 R8
-R9
-R10
-!i113 0
-R11
 R12
+R9
+!i113 0
+R10
+R11
 R1
