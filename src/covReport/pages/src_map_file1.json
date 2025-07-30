@@ -1,14 +1,3 @@
 var g_data = {'dummy':null,
-'3':'ALU_Design_16clock_cycles.sv',
-'13':'alu_pkg.sv',
-'4':'cover_assert.sv',
-'7':'driver.sv',
-'11':'environment.sv',
-'6':'generator.sv',
-'1':'interface.sv',
-'8':'monitor.sv',
-'9':'reference.sv',
-'10':'scoreboard.sv',
-'12':'test.sv',
-'2':'top.sv',
-'5':'transaction.sv'};
+'1':'cover_assert.sv',
+'2':'top.sv'};

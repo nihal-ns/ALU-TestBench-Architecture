@@ -17,7 +17,7 @@ compile:
 
 # Run simulation with coverage and assertions
 simulate:
-	vsim -vopt work.top -voptargs=+acc=npr -assertdebug -l simulation.log -coverage -c -do \
+	vsim -vopt work.top -voptargs=+acc=npr -assertdebug -l simulation.log -c -do \
 		"coverage save -onexit -assert -directive -cvg -codeAll alu_coverage.ucdb; run -all; exit"
 
 # Generate HTML coverage report

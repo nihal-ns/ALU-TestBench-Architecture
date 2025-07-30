@@ -7,8 +7,8 @@ scopes:[{link:'z.htm?f=0&s=6',val:'work.cover_assert'}]
 ,{cr:'m',c:'F',z:'Input_Invalid_cycle',fc:'Rr',pc:'Gr',h0:'3',h1:'22604',h2:'60506',h3:'37899',h4:'0',h5:'0',h6:'1'}
 ],
 },
-a210:{
-scopes:[{s:'7',b:'1',val:'top'},{link:'z.htm?f=0&s=210',val:'ASSERT'}]
+a10:{
+scopes:[{s:'7',b:'0',val:'top'},{link:'z.htm?f=0&s=10',val:'ASSERT'}]
 ,assertions:[{dummy:0},{cr:'m',c:'F',z:'unknown',fc:'Rr',pc:'Gr',h0:'3',h1:'60503',h2:'60506',h3:'0',h4:'0',h5:'0',h6:'1'}
 ,{cr:'m',c:'F',z:'Rst_assert',fc:'Rr',pc:'Gr',h0:'1',h1:'60505',h2:'60506',h3:'0',h4:'0',h5:'0',h6:'1'}
 ,{cr:'m',c:'F',z:'Clk_enable',fc:'Rr',pc:'Gr',h0:'2343',h1:'23454',h2:'60506',h3:'34708',h4:'0',h5:'1',h6:'2'}

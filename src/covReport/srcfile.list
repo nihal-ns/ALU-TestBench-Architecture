@@ -1,13 +1,2 @@
-ALU_Design_16clock_cycles.sv
-alu_pkg.sv
 cover_assert.sv
-driver.sv
-environment.sv
-generator.sv
-interface.sv
-monitor.sv
-reference.sv
-scoreboard.sv
-test.sv
 top.sv
-transaction.sv
